@@ -1,0 +1,53 @@
+openapi: 3.0.1
+info:
+  title: Your API Name
+  description: Your API Description
+  version: 1.0.0
+  contact:
+    name: Your Name
+    email: awesome.email@example.com
+servers:
+  - url: 'http://localhost:8000'
+    description: Development Server
+  - url: 'http://api.stg.{region}.example.com'
+    description: Staging Server
+    variables:
+      region:
+        default: eu-west-1
+        enum:
+          - eu-west-1
+          - us-east-1
+  - url: 'http://api.{site-domain}'
+    description: Production Server
+    variables:
+      site-domain:
+        default: example.com
+        enum:
+          - example.com
+          - example.org
+paths:
+  /health:
+    get:
+      operationId: GET-/health
+      description: Health Check
+      tags:
+        - Health
+      responses:
+        '200':
+          description: Health Check successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Health'
+components:
+  schemas:
+    Health:
+      type: object
+      properties:
+        message:
+          type: string
+      example:
+        message: 'All good here, thanks for asking!'

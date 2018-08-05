@@ -1,0 +1,75 @@
+version: '3.4'
+
+services:
+  server:
+    container_name: "express-api-server"
+    build:
+      context: .
+      target: local
+      args:
+      - UID=${UID}
+    env_file:
+    - .env
+    volumes:
+    - .:/app
+    command: ["/bin/sh", "/start.sh"]
+    ports:
+    - target: 8091
+      published: 8091
+      protocol: tcp
+      mode: host
+    depends_on:
+    - mongodb
+#    - memcached
+#    - redis
+    tty: true
+    networks:
+    - default
+
+  mongodb:
+    image: mongo:latest
+    container_name: "express-api-mongodb"
+    env_file:
+    - .env
+    volumes:
+    - ./data/db:/data/db
+    ports:
+    - target: 27017
+      published: 27017
+      protocol: tcp
+      mode: host
+    command: mongod --smallfiles --logpath=/dev/null # --quiet
+    networks:
+    - default
+
+#  memcached:
+#    image: memcached:alpine
+#    container_name: "express-api-memcached"
+#    env_file:
+#      - .env
+#    volumes:
+#      - ./data/memcached:/var/lib/memcached
+#    ports:
+#      - target: 11211
+#        published: 11211
+#        protocol: tcp
+#        mode: host
+#    command: memcached -m 64 # set memory storage to 64 megabytes
+#    networks:
+#      - default
+
+#  redis:
+#    image: redis:4-alpine
+#    container_name: "express-api-redis"
+#    volumes:
+#    - ./data/redis:/data
+#    ports:
+#    - target: 6379
+#      published: 6379
+#      protocol: tcp
+#      mode: host
+#    networks:
+#    - default
+
+networks:
+  default:

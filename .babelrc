@@ -1,0 +1,26 @@
+{
+  "presets": [
+    ["env",
+      {
+        "targets": {
+          "node": "current"
+        },
+        "useBuiltIns": true
+      }
+    ]
+  ],
+  "plugins": [
+    "transform-runtime",
+    ["transform-object-rest-spread", {
+      "useBuiltIns": true
+    }],
+    ["module-resolver", {
+      "root": ["./src"],
+      "alias": {
+        "Config": "./src/config",
+        "Modules": "./src/modules",
+        "Utils": "./src/utils"
+      }
+    }]
+  ]
+}
