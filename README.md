@@ -1,11 +1,11 @@
-# Hapi API Base
-Base code I found myself always using when starting an API based on [Hapi](https://hapijs.com/)
+# Express API Base
+Base code for an API based on [Express](https://expressjs.com/)
 
 ## Getting Started
 
 **Clone this repo**
   ```
-  ~$ git clone git@github.com:iniva/hapi-api-base.git
+  ~$ git clone git@github.com:iniva/express-api-base.git
   ```
 
 #### Running the project from your Host machine
