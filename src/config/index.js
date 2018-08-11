@@ -38,6 +38,11 @@ const defaultConfig = {
         driver: process.env.CACHE_DRIVER || 'memory',
         // TTL in seconds
         ttl: process.env.CACHE_DEFAULT_TTL || DEFAULT_CACHE_TTL
+    },
+
+    logger: {
+        name: APP_NAME,
+        level: process.env.DEBUG_LEVEL || 'info'
     }
 };
 const { 'default': targetConfig } = require(`./${ENVIRONMENT}`);
