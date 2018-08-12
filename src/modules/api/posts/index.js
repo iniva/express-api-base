@@ -7,7 +7,8 @@ const PREFIX = '/posts';
 const routes = Router(); // eslint-disable-line new-cap
 
 routes
-    .get('/', wrapAsync(PostsController.get));
+    .get('/', wrapAsync(PostsController.list))
+    .post('/', wrapAsync(PostsController.create));
 
 export default {
     prefix: PREFIX,

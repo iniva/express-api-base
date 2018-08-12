@@ -1,5 +1,6 @@
 import express from 'express';
 import pino from 'express-pino-logger';
+import bodyParser from 'body-parser';
 
 import Logger from 'Utils/logger';
 import Config from './config';
@@ -22,6 +23,11 @@ const pinoLogger = pino({ ...Config.get('logger') });
 for (const [option, value] of Object.entries(Config.get('app'))) {
     app.set(option, value);
 }
+
+// Set utilities to handle payloads
+app.use(bodyParser.json());
+// Uncomment below line if you intend to receive payloads with "application/x-www-form-urlencoded"
+// app.use(bodyParser.urlencoded({ extended: true }));
 
 // Set Logger
 app.use(pinoLogger);
