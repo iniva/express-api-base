@@ -1,11 +1,9 @@
+import Boom from 'boom';
+
 export default class HealthController {
     static async get(req, res) {
         if (req.query.hasOwnProperty('fail')) {
-            const error = new Error('oh dear');
-
-            error.statusCode = 400;
-
-            throw error;
+            throw Boom.badRequest('oh dear');
         }
 
         res.send({
