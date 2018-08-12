@@ -6,6 +6,7 @@ import Config from './config';
 // Middlewares
 import globalMiddlewares from 'Middlewares/global';
 import errorHandler from 'Middlewares/errorHandler';
+import notFoundHandler from 'Middlewares/notFoundHandler';
 
 // API Modules
 import api from 'Modules/api';
@@ -31,6 +32,8 @@ app.use('/*', globalMiddlewares);
 // Load API Modules
 api(app);
 
+// Set Global Not Found Handler Middleware
+app.use(notFoundHandler);
 // Set Global Error Handler Middleware
 app.use(errorHandler);
 
