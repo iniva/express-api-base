@@ -8,8 +8,9 @@ import globalMiddlewares from 'Middlewares/global';
 import errorHandler from 'Middlewares/errorHandler';
 
 // API Modules
-import health from 'Modules/health';
+import api from 'Modules/api';
 
+// Express APP
 const app = express();
 
 const serverOptions = Config.get('server');
@@ -21,13 +22,14 @@ for (const [option, value] of Object.entries(Config.get('app'))) {
     app.set(option, value);
 }
 
+// Set Logger
 app.use(pinoLogger);
 
 // Set Global Middlewares
 app.use('/*', globalMiddlewares);
 
 // Load API Modules
-app.use(health.prefix, health.routes);
+api(app);
 
 // Set Global Error Handler Middleware
 app.use(errorHandler);
