@@ -1,3 +1,5 @@
+import PostsValidator from './validator';
+
 export default class PostsController {
     static async list(req, res) {
         res.send({
@@ -6,10 +8,14 @@ export default class PostsController {
     }
 
     static async create(req, res) {
-        // req.body content must not be trusted and
-        // should be validated before handling it
+        const { errors, value } = PostsValidator.create(req.body);
+
+        if (errors) {
+            throw PostsValidator.toResponse(errors);
+        }
+
         res.send({
-            data: req.body
+            data: value
         });
     }
 }
