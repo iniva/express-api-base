@@ -7,11 +7,10 @@
   "author": "Tony <tonyblast@gmail.com>",
   "license": "MIT",
   "engines": {
-    "node": ">=8.10.0 <9",
-    "yarn": ">=1.9.0"
+    "node": ">=8.10.0 <9 || >=10",
+    "yarn": ">=1.10.0"
   },
   "scripts": {
-    "audit": "npm i --package-lock-only && npm audit",
     "clean": "rm -rf dist",
     "commit": "git-cz",
     "build": "yarn clean && babel src --out-dir dist --source-maps --copy-files",
