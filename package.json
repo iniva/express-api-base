@@ -33,12 +33,12 @@
     "boom": "^7.2.0",
     "debug": "^3.1.0",
     "dotenv": "^5.0.1",
-    "express": "^4.16.3",
+    "express": "^4.16.4",
     "express-pino-logger": "^4.0.0",
     "got": "^9.6.0",
     "ioredis": "^3.2.2",
     "joi": "^13.6.0",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.11",
     "webpack-merge": "^4.1.2"
   },
   "devDependencies": {
