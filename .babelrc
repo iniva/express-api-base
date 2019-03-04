@@ -1,17 +1,21 @@
 {
   "presets": [
-    ["env",
-      {
-        "targets": {
-          "node": "current"
-        },
-        "useBuiltIns": true
+    ["@babel/preset-env", {
+      "targets": {
+        "node": "current"
+      },
+      "useBuiltIns": "entry"
+    }],
+    ["airbnb", {
+      "targets": {
+        "node": "current"
       }
-    ]
+    }]
   ],
   "plugins": [
-    "transform-runtime",
-    ["transform-object-rest-spread", {
+    "@babel/plugin-transform-runtime",
+    ["@babel/plugin-proposal-object-rest-spread", {
+      "loose": true,
       "useBuiltIns": true
     }],
     ["module-resolver", {
