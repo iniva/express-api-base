@@ -1,5 +1,5 @@
-import { reqLogger } from './reqLogger';
+import reqLogger from './reqLogger';
 
 export default [
-    reqLogger
+  reqLogger,
 ];

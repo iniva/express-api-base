@@ -1,4 +1,6 @@
-export const reqLogger = (req, res, next) => {
-    // code
-    next();
+const reqLogger = (req, res, next) => {
+  // code
+  next();
 };
+
+export default reqLogger;

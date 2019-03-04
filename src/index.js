@@ -2,15 +2,14 @@ import express from 'express';
 import pino from 'express-pino-logger';
 import bodyParser from 'body-parser';
 
-import Logger from 'Utils/logger';
-import Config from './config';
 // Middlewares
 import globalMiddlewares from 'Middlewares/global';
 import errorHandler from 'Middlewares/errorHandler';
 import notFoundHandler from 'Middlewares/notFoundHandler';
-
 // API Modules
 import api from 'Modules/api';
+import Config from './config';
+import Logger from 'Utils/logger';
 
 // Express APP
 const app = express();
@@ -20,9 +19,9 @@ const log = Logger.create();
 const pinoLogger = pino({ ...Config.get('logger') });
 
 // Set App settings
-for (const [option, value] of Object.entries(Config.get('app'))) {
-    app.set(option, value);
-}
+Object.entries(Config.get('app')).forEach(([option, value]) => {
+  app.set(option, value);
+});
 
 // Set utilities to handle payloads
 app.use(bodyParser.json());
@@ -45,5 +44,5 @@ app.use(errorHandler);
 
 // Start App
 app.listen(serverOptions.port, serverOptions.host, () => {
-    log(`${app.get('name')} ${app.get('version')} listening on port http://0.0.0.0:${serverOptions.port}`);
+  log(`${app.get('name')} ${app.get('version')} listening on port http://0.0.0.0:${serverOptions.port}`);
 });

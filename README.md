@@ -1,36 +1,55 @@
-# Express API Base
+[![Build Status](https://travis-ci.org/iniva/express-api-base.svg?branch=master)](https://travis-ci.org/iniva/express-api-base)
+[![Coverage Status](https://coveralls.io/repos/github/iniva/express-api-base/badge.svg?branch=master)](https://coveralls.io/github/iniva/express-api-base?branch=master)
+
+# Express API Base <!-- omit in toc -->
 Base code for an API based on [Express](https://expressjs.com/)
 
-## Getting Started
+- [Getting Started](#getting-started)
+  - [Running the project from your Host machine](#running-the-project-from-your-host-machine)
+  - [Running the project using Docker Compose](#running-the-project-using-docker-compose)
+- [Available commands](#available-commands)
+  - [yarn start:[environment]](#yarn-startenvironment)
+  - [yarn clean](#yarn-clean)
+  - [yarn build](#yarn-build)
+  - [yarn build:docs](#yarn-builddocs)
+  - [yarn test](#yarn-test)
+  - [yarn lint](#yarn-lint)
+  - [yarn bump:version](#yarn-bumpversion)
+  - [yarn commit](#yarn-commit)
+- [Documentation](#documentation)
 
+# Getting Started
 **Clone this repo**
-  ```
-  ~$ git clone git@github.com:iniva/express-api-base.git
-  ```
+```
+~$ git clone git@github.com:iniva/express-api-base.git
+```
 
-#### Running the project from your Host machine
+## Running the project from your Host machine
 To use your machine to run everything you will need:
-* Node **_Carbon LTS_** (using [nvm](https://github.com/creationix/nvm) is easy and recommended)
+* Node **LTS versions** like _Carbon_ or _Dubnium(**recommended**)_. Using [nvm](https://github.com/creationix/nvm) is easy and recommended
 * **Mac**
     * Run `brew install nvm`
 * **Ubuntu**
+    * For the latest version check [nvm releases](https://github.com/creationix/nvm/releases)
     *   ```
-        curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
+        curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
         source ~/.profile
         ```
 * **Both**
-    * Run `nvm install lts/carbon --latest-npm` to install the current LTS version of Node. Also, attempt to install the latest npm version
-    * Run `nvm use lts/carbon` to set Node to use this version
+    > Using lts/dubnium
+
+    * Run `nvm install lts/dubnium --latest-npm` to install the current LTS version of Node. Also, attempt to install the latest npm version
+    * Run `nvm use lts/dubnium` to set Node to use this version
     * Run `yarn install` to install the project dependencies
     * Run `yarn start:development` to start the API [see below for more options](#available-commands)
     * By default the API will listen to [http://0.0.0.0:8091](http://0.0.0.0:8091)
 
-#### Running the project using Docker Compose
+## Running the project using Docker Compose
 To use Docker Compose you will need:
 * **On Mac**: [Get Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
 * **On Ubuntu**: You will need to install Docker and then Docker compose
     * [Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce)
-    * [Compose](https://docs.docker.com/compose/install/#install-compose)
+    * [Compose](https://docs.docker.com/compose/install/#install-compose):
     Follow the instructions on the **Linux** tab
 
 * On the terminal, go to project's folder:
@@ -51,31 +70,31 @@ To use Docker Compose you will need:
 
 # Available commands
 
-### yarn start:[environment]
+## yarn start:[environment]
 Start API server in _environment_ mode listening on port 8091
 * Environments:
   * development
   * production
 
-### yarn clean
+## yarn clean
 Remove build files
 
-### yarn build
+## yarn build
 Generate build files (**dist** folder)
 
-### yarn build:docs
+## yarn build:docs
 Generate (or update) the `openapi.yaml` file.
 
-### yarn test
+## yarn test
 Run the test suites
 
-### yarn lint
+## yarn lint
 Run lint tool
 
-### yarn bump:version
+## yarn bump:version
 Generate a new version tag. Also runs the `build:docs` command to update the `openapi.yaml` file with the new API version.
 
-### yarn commit
+## yarn commit
 Helps you make commit messages using the project standardized format
 
 # Documentation
