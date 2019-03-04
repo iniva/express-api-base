@@ -30,7 +30,7 @@
   "dependencies": {
     "@babel/runtime": "^7.3.4",
     "body-parser": "^1.18.3",
-    "boom": "^7.2.0",
+    "boom": "^7.3.0",
     "debug": "^3.1.0",
     "dotenv": "^5.0.1",
     "express": "^4.16.4",
@@ -39,7 +39,7 @@
     "ioredis": "^3.2.2",
     "joi": "^13.6.0",
     "lodash": "^4.17.11",
-    "webpack-merge": "^4.1.2"
+    "webpack-merge": "^4.2.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
