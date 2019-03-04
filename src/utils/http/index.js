@@ -1,91 +1,88 @@
-import axios from 'axios';
-import merge from 'lodash/merge';
+import got from 'got';
 
 import Config from 'Config/index';
 import Logger from '../logger';
 
 const log = Logger.create('utils:http');
 
-const initInterceptors = instance => {
-    // Request Interceptor
-    instance.interceptors.request.use(requestConfig => {
-        if (Config.get('debug.request')) {
-            log('Request Configuration');
-            log(requestConfig);
-        }
+const getHooks = () => {
+  const logError = error => {
+    if (Config.get('debug.error')) {
+      log('Debug: Error');
+      log(error);
+    }
 
-        return requestConfig;
-    }, error => {
-        log('Error in Request');
-        return Promise.reject(error);
-    });
+    return error;
+  };
 
-    // Response Interceptor
-    instance.interceptors.response.use(responseConfig => {
-        if (Config.get('debug.response')) {
-            log('Response Configuration');
-            log(responseConfig);
-        }
+  const logRequest = async options => {
+    if (Config.get('debug.request')) {
+      log('Debug: Request Options');
+      log(options);
+    }
+  };
 
-        return responseConfig;
-    }, error => {
-        log('Error in Response');
-        return Promise.reject(error);
-    });
+  // eslint-disable-next-line no-unused-vars
+  const logRetry = (options, error, retryCount) => {
+    log(`Retrying request [${retryCount} time]`);
+  };
+
+  // eslint-disable-next-line no-unused-vars
+  const logAfterResponse = (response, retryWithMergedOptions) => {
+    if (Config.get('debug.response')) {
+      log('Debug: Response');
+      log(response);
+    }
+
+    return response;
+  };
+
+  return {
+    beforeError: [logError],
+    init: [],
+    beforeRequest: [logRequest],
+    beforeRedirect: [],
+    beforeRetry: [logRetry],
+    afterResponse: [logAfterResponse],
+  };
 };
 
 export default class HTTP {
-    constructor() {
-        const defaults = {
-            headers: {
-                'User-Agent': Config.get('userAgent')
-            }
-        };
+  constructor(options = {}) {
+    const defaultOptions = {
+      headers: {
+        'user-agent': Config.get('userAgent'),
+      },
+      responseType: 'json',
+      json: true,
+      hooks: getHooks(),
+    };
 
-        this.instance = axios.create(defaults);
-        initInterceptors(this.instance);
-    }
+    const fullOptions = got.mergeOptions(defaultOptions, options);
+    const defaults = {
+      handler: got.defaults.handler,
+      options: got.mergeOptions(got.defaults.options, fullOptions),
+      mutableDefaults: got.defaults.mutableDefaults,
+    };
 
-    async request(method, endpoint, options) {
-        let config = {
-            method,
-            url: endpoint
-        };
+    this.instance = got.create(defaults);
+  }
 
-        config = merge(config, options);
+  async request(endpoint, options) {
+    const config = this.instance.mergeOptions(this.instance.defaults.options, options);
 
-        return await this.instance(config);
-    }
+    return this.instance(endpoint, config);
+  }
 
-    async get(endpoint, options = {}) {
-        return await this.request('get', endpoint, options);
-    }
+  async get(endpoint, options = {}) {
+    options.method = 'get';
 
-    async post(endpoint, options = {}) {
-        return await this.request('post', endpoint, options);
-    }
+    return this.request(endpoint, options);
+  }
 
-    handleError(error) {
-        if (error.response) {
-            log('Error in Response');
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
-            log('\n== Data ==\n', error.response.data);
-            // log(error.response.status);
-            // log(error.response.headers);
-        }
-        else if (error.request) {
-            log('Error in Request');
-            // The request was made but no response was received
-            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-            // http.ClientRequest in node.js
-            log('\n== Message ==\n', error.request);
-        }
-        else {
-            // Something happened in setting up the request that triggered an Error
-            log('\n== Error ==\n', error.message);
-        }
-        log('\n== Configuration ==\n', error.config);
-        log('\n== Error ==\n', error);
-    }
+  async post(endpoint, options = {}) {
+    options.method = 'post';
+
+    return this.request(endpoint, options);
+  }
 }
