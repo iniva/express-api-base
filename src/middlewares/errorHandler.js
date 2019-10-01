@@ -1,4 +1,4 @@
-import Boom from 'boom';
+import Boom from '@hapi/boom';
 
 const DEFAULT_STATUS_CODE = 500;
 const DEFAULT_ERROR_MESSAGE = 'Internal Server Error';
