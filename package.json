@@ -29,8 +29,9 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.6.2",
+    "@hapi/boom": "^8.0.1",
+    "@hapi/joi": "^16.1.4",
     "body-parser": "^1.18.3",
-    "boom": "^7.3.0",
     "core-js": "2",
     "debug": "^4.1.1",
     "dotenv": "^8.1.0",
@@ -38,7 +39,6 @@
     "express-pino-logger": "^4.0.0",
     "got": "^9.6.0",
     "ioredis": "^4.14.1",
-    "joi": "^14.3.1",
     "lodash": "^4.17.15",
     "webpack-merge": "^4.2.2"
   },
