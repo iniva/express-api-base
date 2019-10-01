@@ -28,7 +28,7 @@
     "test:coveralls": "yarn test --coverage --coverageReporters=text-lcov | coveralls"
   },
   "dependencies": {
-    "@babel/runtime": "^7.5.5",
+    "@babel/runtime": "^7.6.2",
     "body-parser": "^1.18.3",
     "boom": "^7.3.0",
     "core-js": "2",
@@ -43,13 +43,13 @@
     "webpack-merge": "^4.2.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
-    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
-    "@babel/plugin-transform-runtime": "^7.5.5",
-    "@babel/polyfill": "^7.2.5",
-    "@babel/preset-env": "^7.5.5",
-    "@babel/register": "^7.5.5",
+    "@babel/cli": "^7.6.2",
+    "@babel/core": "^7.6.2",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/polyfill": "^7.6.0",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/register": "^7.6.2",
     "babel-core": "^6.26.3",
     "babel-jest": "^24.9.0",
     "babel-plugin-module-resolver": "^3.2.0",
@@ -57,7 +57,7 @@
     "commitizen": "^4.0.3",
     "coveralls": "^3.0.6",
     "cz-conventional-changelog": "^3.0.2",
-    "eslint": "^6.3.0",
+    "eslint": "^6.5.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-import-resolver-babel-module": "^5.0.1",
