@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.org/iniva/express-api-base.svg?branch=master)](https://travis-ci.org/iniva/express-api-base)
-[![Coverage Status](https://coveralls.io/repos/github/iniva/express-api-base/badge.svg?branch=master)](https://coveralls.io/github/iniva/express-api-base?branch=master)
+> :warning: This won't be updated anymore and will be ported to Typescript in a new repository
 
 # Express API Base <!-- omit in toc -->
 Base code for an API based on [Express](https://expressjs.com/)
