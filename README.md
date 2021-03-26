@@ -1,4 +1,4 @@
-> :warning: This won't be updated anymore and will be ported to Typescript in a new repository
+> :warning: This won't be updated anymore. You can find a port to Typescript [here](https://github.com/iniva/express-api-ts-base)
 
 # Express API Base <!-- omit in toc -->
 Base code for an API based on [Express](https://expressjs.com/)
